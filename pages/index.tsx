@@ -110,13 +110,13 @@ export default Home;
 export async function getStaticProps() {
   const flashSales: Product[] = await fetch(
     `${
-      process.env.NODE_EVN === "production" ? process.env.VERCEL_URL : "http://localhost:3000"
+      process.env.NODE_ENV === "production" ? process.env.VERCEL_URL : "http://localhost:3000"
     }/api/products?collection_id=410918781155`
   ).then((x) => x.json());
 
   const featured: Product[] = await fetch(
     `${
-      process.env.NODE_EVN === "production" ? process.env.VERCEL_URL : "http://localhost:3000"
+      process.env.NODE_ENV === "production" ? process.env.VERCEL_URL : "http://localhost:3000"
     }/api/products?collection_id=410943095011`
   ).then((x) => x.json());
 
