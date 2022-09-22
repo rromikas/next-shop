@@ -218,7 +218,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps<{ product: Product }> = async (context) => {
   const id = context.params?.pid;
-
+  console.log(
+    "found product: ",
+    FallbackProducts.find((x) => x.id.toString() === id)
+  );
   return {
     props: {
       product: FallbackProducts.find((x) => x.id.toString() === id) as any as Product,
