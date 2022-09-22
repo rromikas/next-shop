@@ -11,7 +11,6 @@ import { Product } from "@shopify/shopify-api/dist/rest-resources/2022-07/produc
 import FlashSaleProduct from "../components/flash-sale-product";
 import FeaturedProduct from "../components/featured-product";
 import { API_BASE_URL } from "constants/index";
-import FallbackProducts from "products.json";
 
 const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = (props) => {
   return (
@@ -107,17 +106,11 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = (props) =
 
 export default Home;
 
-// export async function getStaticProps() {
-//   const flashSales: Product[] = await fetch(`${API_BASE_URL}/api/products?collection_id=410918781155`).then((x) => x.json());
-//   const featured: Product[] = await fetch(`${API_BASE_URL}/api/products?collection_id=410943095011`).then((x) => x.json());
-
-//   return {
-//     props: { flashSales, featured },
-//   };
-// }
-
 export async function getStaticProps() {
+  const flashSales: Product[] = await fetch(`${API_BASE_URL}/api/products?collection_id=410918781155`).then((x) => x.json());
+  const featured: Product[] = await fetch(`${API_BASE_URL}/api/products?collection_id=410943095011`).then((x) => x.json());
+
   return {
-    props: { flashSales: FallbackProducts, featured: FallbackProducts }, // will be passed to the page component as props
+    props: { flashSales, featured },
   };
 }

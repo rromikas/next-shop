@@ -4,7 +4,6 @@ import type { GetStaticPaths, GetStaticProps, InferGetStaticPropsType, NextPage 
 import Image from "next/image";
 import { AppContext } from "pages/_app";
 import { useContext } from "react";
-import FallbackProducts from "products.json";
 
 const ProductPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({ product }) => {
   const { setCart } = useContext(AppContext);
@@ -210,35 +209,19 @@ const ProductPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
 export default ProductPage;
 
 export const getStaticPaths: GetStaticPaths = async () => {
+  const products: Product[] = await fetch(`${API_BASE_URL}/api/products`).then((x) => x.json());
   return {
-    paths: FallbackProducts.map((x) => ({ params: { pid: x.id.toString() } })),
-    fallback: "blocking",
+    paths: products.map((x) => ({ params: { pid: x.id?.toString() } })),
+    fallback: true,
   };
 };
 
 export const getStaticProps: GetStaticProps<{ product: Product }> = async (context) => {
   const id = context.params?.pid;
+
+  const [product]: Product[] = await fetch(`${API_BASE_URL}/api/products?ids=${id}`).then((x) => x.json());
+
   return {
-    props: {
-      product: FallbackProducts.find((x) => x.id.toString() === id) as any as Product,
-    },
+    props: { product },
   };
 };
-
-// export const getStaticPaths: GetStaticPaths = async () => {
-//   const products: Product[] = await fetch(`${API_BASE_URL}/api/products`).then((x) => x.json());
-//   return {
-//     paths: products.map((x) => ({ params: { pid: x.id?.toString() } })),
-//     fallback: true,
-//   };
-// };
-
-// export const getStaticProps: GetStaticProps<{ product: Product }> = async (context) => {
-//   const id = context.params?.pid;
-
-//   const [product]: Product[] = await fetch(`${API_BASE_URL}/api/products?ids=${id}`).then((x) => x.json());
-
-//   return {
-//     props: { product },
-//   };
-// };

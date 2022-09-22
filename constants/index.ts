@@ -1,3 +1,2 @@
-// export const API_BASE_URL = process.env.NODE_ENV === "production" ? process.env.VERCEL_URL : "http://localhost:3000";
-
-export const API_BASE_URL = undefined;
+export const API_BASE_URL =
+  process.env.NODE_ENV === "production" ? "https://next-shop-peach.vercel.app" : "http://localhost:3000";
