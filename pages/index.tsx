@@ -108,6 +108,7 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = (props) =
 export default Home;
 
 export async function getStaticProps() {
+  console.log({ FallbackProducts });
   if (!API_BASE_URL) {
     return {
       props: { flashSales: FallbackProducts, featured: FallbackProducts }, // will be passed to the page component as props
