@@ -1,7 +1,7 @@
 import { Product } from "@shopify/shopify-api/dist/rest-resources/2022-07/product";
 import { FunctionComponent } from "react";
 import Image from "next/image";
-import { CartItem } from "pages/types";
+import { CartItem } from "types";
 
 interface CartItemProps {
   item: CartItem;
