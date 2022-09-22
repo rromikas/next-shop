@@ -222,13 +222,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps<{ product: Product }> = async (context) => {
   const id = context.params?.pid;
 
-  const [product]: Product[] = await fetch(
-    `${
-      process.env.NODE_ENV === "production" ? "https://next-shop-2rzkglc59-rromikas.vercel.app" : "http://localhost:3000"
-    }/api/products?ids=${id}`
-  ).then((x) => x.json());
+  // const [product]: Product[] = await fetch(
+  //   `${
+  //     process.env.NODE_ENV === "production" ? "https://next-shop-2rzkglc59-rromikas.vercel.app" : "http://localhost:3000"
+  //   }/api/products?ids=${id}`
+  // ).then((x) => x.json());
 
   return {
-    props: { product },
+    props: { product: {} as any },
   };
 };

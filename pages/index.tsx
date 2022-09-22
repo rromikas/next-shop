@@ -108,19 +108,19 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = (props) =
 export default Home;
 
 export async function getStaticProps() {
-  const flashSales: Product[] = await fetch(
-    `${
-      process.env.NODE_ENV === "production" ? "https://next-shop-2rzkglc59-rromikas.vercel.app" : "http://localhost:3000"
-    }/api/products?collection_id=410918781155`
-  ).then((x) => x.json());
+  // const flashSales: Product[] = await fetch(
+  //   `${
+  //     process.env.NODE_ENV === "production" ? "https://next-shop-2rzkglc59-rromikas.vercel.app" : "http://localhost:3000"
+  //   }/api/products?collection_id=410918781155`
+  // ).then((x) => x.json());
 
-  const featured: Product[] = await fetch(
-    `${
-      process.env.NODE_ENV === "production" ? "https://next-shop-2rzkglc59-rromikas.vercel.app" : "http://localhost:3000"
-    }/api/products?collection_id=410943095011`
-  ).then((x) => x.json());
+  // const featured: Product[] = await fetch(
+  //   `${
+  //     process.env.NODE_ENV === "production" ? "https://next-shop-2rzkglc59-rromikas.vercel.app" : "http://localhost:3000"
+  //   }/api/products?collection_id=410943095011`
+  // ).then((x) => x.json());
 
   return {
-    props: { flashSales, featured }, // will be passed to the page component as props
+    props: { flashSales: [], featured: [] }, // will be passed to the page component as props
   };
 }
