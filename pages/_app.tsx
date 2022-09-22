@@ -28,5 +28,6 @@ export default MyApp;
 
 MyApp.getInitialProps = async (ctx: NextAppContext) => {
   const appProps = await App.getInitialProps(ctx);
+  console.log({ appProps });
   return { ...appProps };
 };
