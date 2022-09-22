@@ -225,6 +225,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps<{ product: Product }> = async (context) => {
   const id = context.params?.pid;
+  console.log({ API_BASE_URL });
   if (!API_BASE_URL) {
     return {
       props: {
