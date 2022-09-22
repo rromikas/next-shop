@@ -8,8 +8,8 @@ import Asset11 from "../assets/11.jpg";
 import Asset6 from "../assets/6.jpg";
 import Image from "next/image";
 import { Product } from "@shopify/shopify-api/dist/rest-resources/2022-07/product";
-import FlashSaleProduct from "./components/flash-sale-product";
-import FeaturedProduct from "./components/featured-product";
+import FlashSaleProduct from "../components/flash-sale-product";
+import FeaturedProduct from "../components/featured-product";
 import { API_BASE_URL } from "constants/index";
 import FallbackProducts from "products.json";
 

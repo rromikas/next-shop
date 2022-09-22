@@ -2,8 +2,8 @@ import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { createContext, useState } from "react";
 import { CartItem } from "types";
-import Header from "./components/header";
-import Footer from "./components/footer";
+import Header from "../components/header";
+import Footer from "../components/footer";
 
 interface AppCotnextType {
   cart: CartItem[];
