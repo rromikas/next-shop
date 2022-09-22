@@ -212,16 +212,12 @@ export default ProductPage;
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths: FallbackProducts.map((x) => ({ params: { pid: x.id.toString() } })),
-    fallback: true,
+    fallback: "blocking",
   };
 };
 
 export const getStaticProps: GetStaticProps<{ product: Product }> = async (context) => {
   const id = context.params?.pid;
-  console.log(
-    "found product: ",
-    FallbackProducts.find((x) => x.id.toString() === id)
-  );
   return {
     props: {
       product: FallbackProducts.find((x) => x.id.toString() === id) as any as Product,
