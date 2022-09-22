@@ -1,8 +1,10 @@
 import { Product } from "@shopify/shopify-api/dist/rest-resources/2022-07/product";
+import { API_BASE_URL } from "constants/index";
 import type { GetStaticPaths, GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
 import Image from "next/image";
 import { AppContext } from "pages/_app";
 import { useContext } from "react";
+import FallbackProducts from "products.json";
 
 const ProductPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({ product }) => {
   const { setCart } = useContext(AppContext);
@@ -208,28 +210,31 @@ const ProductPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
 export default ProductPage;
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  // const products: Product[] = await fetch(
-  //   `${
-  //     process.env.NODE_ENV === "production" ? "https://next-shop-2rzkglc59-rromikas.vercel.app" : "http://localhost:3000"
-  //   }/api/products`
-  // ).then((x) => x.json());
+  if (!API_BASE_URL) {
+    return {
+      paths: [],
+      fallback: true,
+    };
+  }
+  const products: Product[] = await fetch(`${API_BASE_URL}/api/products`).then((x) => x.json());
   return {
-    // paths: products.map((x) => ({ params: { pid: x.id?.toString() } })),
-    paths: [],
+    paths: products.map((x) => ({ params: { pid: x.id?.toString() } })),
     fallback: true,
   };
 };
 
 export const getStaticProps: GetStaticProps<{ product: Product }> = async (context) => {
   const id = context.params?.pid;
-
-  // const [product]: Product[] = await fetch(
-  //   `${
-  //     process.env.NODE_ENV === "production" ? "https://next-shop-2rzkglc59-rromikas.vercel.app" : "http://localhost:3000"
-  //   }/api/products?ids=${id}`
-  // ).then((x) => x.json());
+  if (!API_BASE_URL) {
+    return {
+      props: {
+        product: FallbackProducts[0] as any as Product,
+      },
+    };
+  }
+  const [product]: Product[] = await fetch(`${API_BASE_URL}/api/products?ids=${id}`).then((x) => x.json());
 
   return {
-    props: { product: {} as any },
+    props: { product },
   };
 };

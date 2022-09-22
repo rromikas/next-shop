@@ -1,5 +1,4 @@
 import type { InferGetStaticPropsType, NextPage } from "next";
-import Header from "./components/header";
 import Asset1 from "../assets/1.jpg";
 import Asset4 from "../assets/4.jpg";
 import Asset7 from "../assets/7.jpg";
@@ -11,7 +10,7 @@ import Image from "next/image";
 import { Product } from "@shopify/shopify-api/dist/rest-resources/2022-07/product";
 import FlashSaleProduct from "./components/flash-sale-product";
 import FeaturedProduct from "./components/featured-product";
-import Footer from "./components/footer";
+import { API_BASE_URL } from "constants/index";
 
 const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = (props) => {
   return (
@@ -108,19 +107,16 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = (props) =
 export default Home;
 
 export async function getStaticProps() {
-  // const flashSales: Product[] = await fetch(
-  //   `${
-  //     process.env.NODE_ENV === "production" ? "https://next-shop-2rzkglc59-rromikas.vercel.app" : "http://localhost:3000"
-  //   }/api/products?collection_id=410918781155`
-  // ).then((x) => x.json());
+  if (!API_BASE_URL) {
+    return {
+      props: { flashSales: [], featured: [] }, // will be passed to the page component as props
+    };
+  }
 
-  // const featured: Product[] = await fetch(
-  //   `${
-  //     process.env.NODE_ENV === "production" ? "https://next-shop-2rzkglc59-rromikas.vercel.app" : "http://localhost:3000"
-  //   }/api/products?collection_id=410943095011`
-  // ).then((x) => x.json());
+  const flashSales: Product[] = await fetch(`${API_BASE_URL}/api/products?collection_id=410918781155`).then((x) => x.json());
+  const featured: Product[] = await fetch(`${API_BASE_URL}/api/products?collection_id=410943095011`).then((x) => x.json());
 
   return {
-    props: { flashSales: [], featured: [] }, // will be passed to the page component as props
+    props: { flashSales, featured },
   };
 }
