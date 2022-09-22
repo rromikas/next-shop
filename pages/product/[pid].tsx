@@ -210,6 +210,7 @@ const ProductPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
 export default ProductPage;
 
 export const getStaticPaths: GetStaticPaths = async () => {
+  console.log({ API_BASE_URL });
   if (!API_BASE_URL) {
     return {
       paths: [],
