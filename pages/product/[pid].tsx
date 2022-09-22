@@ -209,7 +209,9 @@ export default ProductPage;
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const products: Product[] = await fetch(
-    `${process.env.NODE_ENV === "production" ? process.env.VERCEL_URL : "http://localhost:3000"}/api/products`
+    `${
+      process.env.NODE_ENV === "production" ? "https://next-shop-2rzkglc59-rromikas.vercel.app" : "http://localhost:3000"
+    }/api/products`
   ).then((x) => x.json());
   return {
     paths: products.map((x) => ({ params: { pid: x.id?.toString() } })),
@@ -221,7 +223,9 @@ export const getStaticProps: GetStaticProps<{ product: Product }> = async (conte
   const id = context.params?.pid;
 
   const [product]: Product[] = await fetch(
-    `${process.env.NODE_ENV === "production" ? process.env.VERCEL_URL : "http://localhost:3000"}/api/products?ids=${id}`
+    `${
+      process.env.NODE_ENV === "production" ? "https://next-shop-2rzkglc59-rromikas.vercel.app" : "http://localhost:3000"
+    }/api/products?ids=${id}`
   ).then((x) => x.json());
 
   return {
