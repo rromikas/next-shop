@@ -212,7 +212,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const products: Product[] = await fetch(`${API_BASE_URL}/api/products`).then((x) => x.json());
   return {
     paths: products.map((x) => ({ params: { pid: x.id?.toString() } })),
-    fallback: true,
+    fallback: "blocking",
   };
 };
 
