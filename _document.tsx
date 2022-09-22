@@ -1,4 +1,4 @@
-import Document, { Html, Head, Main, NextScript, DocumentContext } from "next/document";
+import { Html, Head, Main, NextScript } from "next/document";
 
 export default function MyDocument() {
   return (
@@ -13,8 +13,3 @@ export default function MyDocument() {
     </Html>
   );
 }
-
-MyDocument.getInitialProps = async (ctx: DocumentContext) => {
-  const docProps = await Document.getInitialProps(ctx);
-  return { ...docProps };
-};
