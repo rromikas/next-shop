@@ -210,6 +210,7 @@ const ProductPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
 export default ProductPage;
 
 export const getStaticPaths: GetStaticPaths = async () => {
+  console.log({ FallbackProducts });
   console.log({ API_BASE_URL });
   if (!API_BASE_URL) {
     return {
@@ -225,6 +226,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps<{ product: Product }> = async (context) => {
+  console.log({ FallbackProducts });
   const id = context.params?.pid;
   console.log({ API_BASE_URL });
   if (!API_BASE_URL) {
