@@ -201,7 +201,7 @@ const Footer: FunctionComponent<FooterProps> = () => {
             <ul className="text-xs lg:text-sm text-body flex flex-col space-y-3 lg:space-y-3.5">
               <li className="flex items-baseline">
                 <a className="transition-colors duration-200 hover:text-black" href="https://chawkbazar.vercel.app/search">
-                  Men's Wear
+                  Men's Wear'
                 </a>
               </li>
               <li className="flex items-baseline">

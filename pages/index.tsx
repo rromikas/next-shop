@@ -78,7 +78,7 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = (props) =
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-x-3 md:gap-x-5 xl:gap-x-7 gap-y-4 lg:gap-y-5 xl:lg:gap-y-6 2xl:gap-y-8">
               {props.flashSales.map((x, i) => (
-                <FlashSaleProduct product={x}></FlashSaleProduct>
+                <FlashSaleProduct key={`flash-sale-product-${i}`} product={x}></FlashSaleProduct>
               ))}
             </div>
           </div>

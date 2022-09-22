@@ -80,6 +80,7 @@ const Header: FunctionComponent<HeaderProps> = () => {
           </svg>
         </a>
         <button
+          onClick={() => setCartOpen(true)}
           className="flex items-center justify-center flex-shrink-0 h-auto relative focus:outline-none transform"
           aria-label="cart-button"
         >
@@ -97,8 +98,8 @@ const Header: FunctionComponent<HeaderProps> = () => {
               fillRule="evenodd"
             />
           </svg>
-          <span className="cart-counter-badge flex items-center justify-center bg-[#212121] text-white absolute -top-2.5 xl:-top-3 -end-2.5 xl:-end-3 rounded-full font-bold">
-            0
+          <span className="w-4 h-4 text-xs flex items-center justify-center bg-[#212121] text-white absolute -top-2.5 -right-2 rounded-full font-bold">
+            {cart.length}
           </span>
         </button>
         <button className="flex-shrink-0 focus:outline-none">
