@@ -214,7 +214,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   console.log({ API_BASE_URL });
   if (!API_BASE_URL) {
     return {
-      paths: [],
+      paths: [{ params: { pid: FallbackProducts[0].id.toString() } }],
       fallback: true,
     };
   }
