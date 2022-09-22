@@ -208,13 +208,14 @@ const ProductPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
 export default ProductPage;
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const products: Product[] = await fetch(
-    `${
-      process.env.NODE_ENV === "production" ? "https://next-shop-2rzkglc59-rromikas.vercel.app" : "http://localhost:3000"
-    }/api/products`
-  ).then((x) => x.json());
+  // const products: Product[] = await fetch(
+  //   `${
+  //     process.env.NODE_ENV === "production" ? "https://next-shop-2rzkglc59-rromikas.vercel.app" : "http://localhost:3000"
+  //   }/api/products`
+  // ).then((x) => x.json());
   return {
-    paths: products.map((x) => ({ params: { pid: x.id?.toString() } })),
+    // paths: products.map((x) => ({ params: { pid: x.id?.toString() } })),
+    paths: [],
     fallback: true,
   };
 };
